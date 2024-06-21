@@ -27,6 +27,9 @@ jobs:
         run: |
           make build
       - name: Upload build artifact
+        env:
+          VAGRANT_TOKEN: ${{ secrets.VAGRANT_TOKEN }}
+        if: github.ref  == 'refs/heads/main'
         run: |
           export VERSION=$(date +%y.%m.%d%-%H%M%S)
           make upload
