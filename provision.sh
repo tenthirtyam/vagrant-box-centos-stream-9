@@ -5,15 +5,15 @@ echo ":::: Running as user $(whoami) ... "
 id
 echo ":::: Home dir: $HOME ..."
 
-sudo setenforce 0
-sudo sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+sestatus=$(sudo getenforce)
+echo "$sestatus"
+if [[ "$sestatus" != "Disabled" ]]; then
+    sudo setenforce 0
+    sudo sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+fi
 
-sudo yum install -y epel-release python3-dnf-plugin-versionlock
-
-# lock these because the vbox extensions will break if they are upgraded
-# unlock when that bug is fixed
-sudo yum versionlock kernel kernel-*
-
+sudo systemctl enable tmp.mount
+sudo yum install -y epel-release
 sudo yum upgrade -y
 sudo yum groupinstall -y GNOME
 sudo yum install -y \
@@ -21,9 +21,11 @@ sudo yum install -y \
     firefox \
     cloud-utils-growpart \
     cloud-init \
+    open-vm-tools-desktop \
     vim \
     wget \
     htop \
+    telnet \
     gcc \
     make \
     net-tools \

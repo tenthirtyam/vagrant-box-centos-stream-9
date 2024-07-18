@@ -1,3 +1,5 @@
 .env
 .vagrant
-output
+virtualbox
+vmware
+vmware_desktop

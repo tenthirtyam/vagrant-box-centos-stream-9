@@ -8,10 +8,10 @@ packer {
 }
 
 source "vagrant" "box" {
-  source_path       = "bento/centos-stream-9"
-  output_dir        = "./virtualbox/"
+  source_path       = "ssplatt/centos-stream-9"
+  output_dir        = "./vmware_desktop/"
   communicator      = "ssh"
-  provider          = "virtualbox"
+  provider          = "vmware_desktop"
   template          = "Vagrantfile.template"
 }
 
