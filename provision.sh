@@ -29,7 +29,7 @@ sudo yum install -y \
     make \
     perl \
     kernel-devel \
-    kerne-headers \
+    kernel-headers \
     unzip \
     socat \
     net-tools \
