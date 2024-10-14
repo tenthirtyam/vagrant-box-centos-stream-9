@@ -2,7 +2,7 @@
 set -e
 
 USE_VAGRANT=${USE_VAGRANT:-"false"}
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null && pwd)/"
 PROJECT_ROOT="$(dirname "$DIR")"
 
 vagrant plugin install vagrant-vmware-desktop

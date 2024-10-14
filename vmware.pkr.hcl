@@ -7,7 +7,7 @@ packer {
   }
 }
 
-variable "vmx_path" { 
+variable "vmx_path" {
   type = string
   default = "/home/runner/.vagrant.d/boxes/bento-VAGRANTSLASH-centos-stream-9/202407.23.0/vmware_desktop/centos-stream-9-amd64.vmx"
 }
@@ -21,7 +21,12 @@ source "vmware-vmx" "box" {
   ssh_timeout       = "10m"
   shutdown_command  = "sudo shutdown -h now"
   format            = "vmx"
-  headless          = "true"
+  headless          = true
+  vmx_data = {
+    "ethernet0.addressType" = "generated"
+    "ethernet0.virtualDev" = "vmxnet3"
+    "ethernet0.present" = "TRUE"
+  }
 }
 
 build {
